@@ -1,7 +1,8 @@
 {
-  "name": "sveltekit",
+  "name": "galaxy",
   "version": "0.0.2",
   "scripts": {
+    "dev": "svelte-kit dev -p 3001",
     "start": "svelte-kit dev -p 3001",
     "build": "svelte-kit build",
     "live": "PORT=3001 node build",
