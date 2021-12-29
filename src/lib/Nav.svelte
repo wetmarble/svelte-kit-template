@@ -20,9 +20,9 @@
     await import('bootstrap/js/dist/dropdown')
     await import('bootstrap/js/dist/collapse')
 
-    var elements = document.getElementsByClassName('a-link')
+    let elements = document.getElementsByClassName('a-link')
 
-    for (var i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i++) {
       elements[i].addEventListener('click', toggleNav, false)
     }
 
@@ -39,7 +39,8 @@
 <nav class='navbar navbar-expand-lg navbar-light bg-light'>
     <div class='container'>
         <a class='navbar-brand a-link' href='/'>
-            {variables.appName}
+            <img src="/img/logo/tecsystems.svg" alt="Tec Systems Logo" style="height: 2rem; margin-top: -.1rem; margin-right: .35rem;">
+            <strong>{variables.appName}</strong>
         </a>
         <button
                 class='navbar-toggler third-button'
@@ -59,20 +60,13 @@
                     &nbsp;
                 </li>
             </ul>
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link active git a-link" aria-current="page" target='_blank' href="https://github.com/mylastore/svelte-kit.git">
-                        <Github />
-                    </a>
-                </li>
-            </ul>
             <ul class='navbar-nav'>
                 {#if !user}
                     <li class='nav-item'>
-                        <a class='nav-link a-link' class:active={$page.path === '/login'} href='/login'>Sing In</a>
+                        <a class='nav-link a-link' class:active={$page.path === '/login'} href='/login'>Sign In</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='a-link btn btn-outline-secondary' role="button" class:active={$page.path === '/register'} href='/register'>Sing Up</a>
+                        <a class='a-link btn btn-outline-secondary' role="button" class:active={$page.path === '/register'} href='/register'>Register</a>
                     </li>
                 {/if}
                 {#if user}

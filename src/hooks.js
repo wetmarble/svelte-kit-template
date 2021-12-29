@@ -1,13 +1,13 @@
 import * as cookie from 'cookie'
 
 export async function handle({request, resolve}) {
-  const cookies = cookie.parse(request.headers.cookie || '')
+  const cookies = cookie.parse(request.headers.cookie || '');
 
-  request.locals.user = cookies.user
-  request.locals.token = cookies.token
-  request.locals.authenticated = !!cookies.token
+  request.locals.user = cookies.user;
+  request.locals.token = cookies.token;
+  request.locals.authenticated = !!cookies.token;
 
-  const response = await resolve(request)
+  const response = await resolve(request);
 
   return {
     ...response,
@@ -15,7 +15,7 @@ export async function handle({request, resolve}) {
       ...response.headers,
       'x-custom-header': 'potato'
     }
-  }
+  };
 
 }
 
@@ -23,7 +23,7 @@ export async function handle({request, resolve}) {
 export function getSession(request) {
   return {
     authenticated: request.locals.authenticated,
-    token: request.locals.token,
-    user: request.locals.user ? JSON.parse(request.locals.user) : null
-  }
+    token:         request.locals.token,
+    user:          request.locals.user ? JSON.parse(request.locals.user) : null
+  };
 }

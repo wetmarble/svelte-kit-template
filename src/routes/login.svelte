@@ -28,18 +28,19 @@
   async function submitForm(e) {
     e.preventDefault()
     const data = {
-      email,
-      password
+      email: email,
+      password: password
     }
     try {
-      const res = await api('POST', 'user/login', data)
+      const res = await api('POST', 'login', data)
       if (res.status >= 400) {
         throw Error(res.message)
       }
       await authenticate(res)
       email = ''
       password = ''
-      return location.href = `/user/profile/${res.user.username}`
+
+      return location.href = `/`
     } catch (err) {
       notifications.push(err.message)
     }
@@ -67,8 +68,7 @@
     <div class='d-flex justify-content-center mt-5'>
       <div class='card login'>
         <div class='card-body'>
-          <h4><strong>Sing In</strong></h4>
-          <p>We are glad you are here.</p>
+          <h2>Sign In</h2>
           <div>
             <Input
                 id='email'
@@ -103,7 +103,7 @@
                 on:click={submitForm}
                 class:disabled={!formIsValid}
                 disabled={!formIsValid}>
-              Sing In
+              Sign In
             </button>
           </div>
         </div>
@@ -114,21 +114,14 @@
 
     </div>
 
-    <div class='d-flex justify-content-center'>
-      <div class='card mt-5 login'>
-        <div class='card-header bg-light'>
-          <span>Test users</span>
-        </div>
-        <div class='card-body text-primary'>
-          <p>Admin: me@me.com Password#1</p>
-          <p>User: me2@me.com Password#1</p>
-        </div>
-      </div>
-    </div>
   </div>
 </main>
 
 <style>
+  .container {
+    margin-top: calc( 100vh/6 );
+  }
+
   .login {
     width: 25rem;
   }

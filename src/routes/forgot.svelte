@@ -30,7 +30,7 @@
 	<meta name="robots" content="noindex, nofollow" />
 </svelte:head>
 
-<main class="container mt-5">
+<main class="container">
 	<div class="d-flex justify-content-center">
 		<form class="card forgot" id="forgot-form">
 			<div class="card-body">
@@ -61,6 +61,10 @@
 </main>
 
 <style>
+	.container {
+		margin-top: calc( 100vh/6 );
+	}
+
 	.forgot{
 		max-width: 25rem;
 	}

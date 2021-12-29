@@ -61,8 +61,8 @@
       <div class="card mt-5 register">
         <div class="card-body">
           <div>
-            <h4><strong>Sing Up</strong></h4>
-            <p>Please note that our services are only available in the United States.</p>
+            <h2>Register</h2>
+            <p>Please note registrations must be approved by TEC Systems.</p>
           </div>
           <form>
             <Input
@@ -111,7 +111,7 @@
                 on:click|preventDefault={submitForm}
                 disabled={!formIsValid}
               >
-                Sing Up
+                Register
               </button>
               <small>By signing up you accept our Privacy Policy.</small>
             </div>
@@ -126,7 +126,11 @@
 </div>
 
 <style>
-    .register {
+  .container {
+    margin-top: calc( 100vh/20 );
+  }
+
+  .register {
         width: 25rem;
     }
 </style>

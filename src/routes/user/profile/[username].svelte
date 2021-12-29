@@ -8,8 +8,9 @@
     }
     return {
       props: {
-        token: session.token,
-        username: session.user.username
+        token:    session.token,
+        username: session.user.username,
+        user:     session.user,
       }
     }
   }
@@ -30,9 +31,9 @@
 
   export let token
   export let username
+  export let user
 
   let isLoading = true
-  let user
   let password = ''
   let passwordConfirmation = ''
   let about
@@ -49,24 +50,25 @@
 
   async function getUser () {
     try {
-      const res = await api('GET', `user/profile/${username}`, {}, token)
+      console.log(user);
+      const res = await api('GET', `api/users/${user.id}.json`, {}, token)
       if (res.status >= 400) {
         throw new Error(res.message)
       }
       isLoading = false
       user = res
 
-      about = user.about || ''
-      location = user.location || ''
-      website = user.website || ''
-      gender = user.gender || ''
-      email = user.email || ''
-      _id = user._id || ''
-      name = user.name || ''
-      role = user.role
+      about     = user.about || ''
+      location  = user.location || ''
+      website   = user.website || ''
+      gender    = user.gender || ''
+      email     = user.email || ''
+      _id       = user._id || ''
+      name      = user.name || ''
+      role      = user.role
       createdAt = timeAgo(user.createdAt)
-      avatar = user.avatar
-      username = user.username
+      avatar    = user.avatar
+      username  = user.username
     } catch (err) {
       isLoading = false
       notifications.push(err.message)
@@ -77,11 +79,11 @@
     await getUser()
   })
 
-  $: emailValid = isEmail(email)
+  $: emailValid       = isEmail(email)
   $: usernameRequired = isRequire(username)
-  $: nameRequired = isRequire(name)
-  $: passwordValid = isPassword(password)
-  $: websiteValid = isUrl(website)
+  $: nameRequired     = isRequire(name)
+  $: passwordValid    = isPassword(password)
+  $: websiteValid     = isUrl(website)
   $: passwordConfirmValid = password === passwordConfirmation
   $: passwordFormIsValid = passwordValid && passwordConfirmValid
   $: formIsValid = emailValid && usernameRequired && nameRequired

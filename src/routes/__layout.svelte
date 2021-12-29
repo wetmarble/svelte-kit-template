@@ -5,25 +5,32 @@
 
 	const year = new Date().getFullYear()
 
+	const apiPath = variables.env === 'development' ? variables.apiDevPath : variables.apiLivePath
 </script>
 
 <div class="site">
 	<Nav />
 	<Notification duration='7000'/>
-	<div class="site-content">
+	<div class="site-content galaxy-bg">
 		<slot />
 	</div>
 	<footer class="text-center">
-		<p>
-			<a href="/"><strong>&copy {year} {variables.appName}. All rights reserved</strong></a><br>
-			The source code is open source -  <a href="https://mylastore.com">Author</a>
-		</p>
+		<br>&copy {year} {variables.appName}. All rights reserved
+		<br><b>API Server: <a href="{apiPath}/api">{apiPath}/api</a></b>
 	</footer>
 </div>
 
 <style>
 	footer {
-		margin: 40px;
+		margin: .5rem;
 		overflow: hidden;
+	}
+
+	.galaxy-bg {
+		background: url("/img/splashes/milky-way-g34c9b56c6_1920.jpg") no-repeat center center fixed; /* Image Source: https://pixabay.com/photos/milky-way-sky-stars-cosmos-night-4526277/ */
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
 	}
 </style>

@@ -1,16 +1,40 @@
 <script>
-  import Logo from "$lib/images/Logo.svelte";
+  import { session } from '$app/stores';
+  import {variables} from '$lib/utils/variables';
+  import Progress from '$lib/Progress.svelte';
+
+  let user = $session.user
 </script>
 
-<div class='hero-bg'>
-  <div class="container">
-    <div class="center">
-      <Logo/>
-      <div class='tagline'>Simple starter template to build svelte apps</div>
+<div class="container">
+  <div class="splash-container">
+    <div>
+      <p class="h1 thin">Welcome to the</p>
+      <p class="h1 thick">{variables.appName} Portal</p>
+      <p class="h1 thin">{user.username}</p>
     </div>
   </div>
 </div>
 
+<div class="container">
+  <div class="progress-container">
+    <Progress label="Engineering" progress="85" />
+    <Progress label="Software" progress="65" />
+    <Progress label="Fabrication" progress="34" />
+    <Progress label="Graphics" progress="45" />
+    <Progress label="Commissioning" progress="10" />
+  </div>
+</div>
+<!--<div class='hero-bg'>-->
+<!--  <div class="container">-->
+<!--    <div class="center">-->
+<!--      <Logo/>-->
+<!--      <div class='tagline'>Simple starter template to build svelte apps</div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--
 <div class='container'>
   <div class='row blogs'>
     <div class='col-md'>
@@ -48,23 +72,43 @@
     </div>
   </div>
 </div>
-
+-->
 <style>
-  .center{
-    padding: 50px 0
-  }
-  .tagline {
-    margin-top: 5px;
+  .container {
+    color: white;
+    justify-content: center;
   }
 
-  .hero-bg {
-    background: #d3d6d9;
-    background: radial-gradient(34.14% 72.25% at 47.58% 31.75%, rgba(232, 244, 255, .52) 0, rgba(255, 255, 255, 0) 100%), linear-gradient(92.4deg, #d1d4d7 14.67%, rgba(238, 247, 255, .48) 54.37%, rgba(206, 216, 224, .62) 92.49%), linear-gradient(0deg, #dbe7ef, #dbe7ef);
-    position: relative;
-    height: 200px;
+  .splash-container{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    height: 30vh;
   }
 
-  .blogs {
-    margin-top: 20px;
+  .progress-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 1rem;
+    justify-content: center;
+    align-content: center;
+  }
+
+  a {
+    color: #74a9ce;
+  }
+
+  .h1 {
+    color: white;
+    font-size: 4rem;
+    margin: 0;
+  }
+  .h1.thin {
+    font-weight: 100;
+    font-size: 2.5rem;
+  }
+  .h1.thick {
+    font-weight: 800;
+
   }
 </style>
